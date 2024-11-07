@@ -475,6 +475,24 @@ document.getElementById("switch").addEventListener('change', function(){
 //   }
 // }
 
+document.addEventListener("DOMContentLoaded", () => {
+  const tabid = document.getElementById("tab");
+
+  tabid.addEventListener("click", (event) => {
+    console.log("tab clicked!");
+    event.stopPropagation();
+    tabid.classList.add("active");
+    console.log(tabid.classList);
+  });
+
+  document.addEventListener("click", () => {
+    console.log("other clicked!");
+    tabid.classList.remove("active");
+    console.log(tabid.classList);
+  });
+});
+
+
 favList = JSON.parse(localStorage.getItem('favList'));
 if(favList == null) favList=[]
 loadFavList()
