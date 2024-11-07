@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>과기대 강의실 시간표</title>
+
+  <!-- HTML -->
+  <!-- Custom Styles -->
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <!-- <input type="text" id="classroominput">
+  <button id="button">search</button> -->
+  
+  <div id="title">2024년 2학기 강의실 시간표</div>
+  <div>
+    <label class="star-checkbox">
+      <input type="checkbox" id="star-checkbox">
+      <span class="star" id="star"></span>
+    </label>
+    
+    <!--<div id="bookmarkButton">☆</div>-->
+    <div id="subjectTitle">강의실을 선택해주세요</div>
+    <div id="isLecting">수업아님</div>
+
+  </div>
+  
+  
+  <canvas id="canvas"></canvas>
+  
+  <div id="tab">
+    <div id="slideToggle"></div>
+    <div id="tabScreen"></div>
+    
+    <div id="select">
+      <select name="building" id="building" onchange="setLectureSelect(this.value)"></select>
+      <select name="lect" id="lect" onchange="setSchedule(this.value)"></select>
+    </div>
+    
+    
+    <label>
+      <input role="switch" type="checkbox" id="switch"/>
+      <span id="switchText">다크모드</span>
+    </label>
+    
+    <div id="bookmarkList">
+      
+    </div>
+    
+    <div id="info">
+      <div>
+        이 사이트는 '에브리타임' 시간표 ui를 참고하여 만들어졌습니다.
+      </div>
+      <div>
+        휴강, 보충, 강의실 대여 등이 반영되지 않아 정확하지 않을 수 있습니다.
+      </div>
+      <div>
+        
+      </div>
+    </div>
+  </div>
+  
+  <p id = "schedulelist"></p>
+  <!-- Project -->
+  <script src="response.js"></script>
+  <script src="main.js"></script>
+</body>
+</html>
