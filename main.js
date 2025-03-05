@@ -7,8 +7,8 @@ canvas.width=w;
 canvas.height=h;
 var strokeSize = 1;
 
-const GRID_X = 5; //default : 5
-const GRID_Y = 9; //default : 9
+const GRID_X = 5; //시간표 그리드 간격, 기본 : 5
+const GRID_Y = 9; //시간표 그리드 간격, 기본 : 9
 
 var isDarkmode = 0;
 
@@ -18,6 +18,7 @@ var favList = []
 ctx.fillStyle="white";
 ctx.fillRect(0,0,w,h);
 
+//디폴트 정보
 var selectedBuilding = '어의관'
 var selectedLect = '?'
 
@@ -260,14 +261,12 @@ function setSchedule(lect){
   let classroom = selectedBuilding+'-'+lect;
   selectedLect = lect
 
-  let color = ["#91ad60","#cf7368","#cda95b","#d8935c","#688fc6","#8a74bf","#6CB4A6","#67AE76","#B682CC"];
+  let color = ["#91ad60","#cf7368","#cda95b","#d8935c","#688fc6","#8a74bf","#6CB4A6","#67AE76","#B682CC"]; //에타 시간표 색
   let idx = 0;
 
   if(selectedLect != '?') document.getElementById('subjectTitle').innerText = classroom
   let classjson = findScheduleOfClassroom(classroom);
   console.log(classjson)
-
-
 
   ctx.fillStyle=["white","#171717"][isDarkmode];
   ctx.fillRect(0,0,w,h);
@@ -321,11 +320,11 @@ function setSchedule(lect){
             if(currentClassHour >= adayschedule[0] && currentClassHour <= adayschedule[1]){
               console.log('수업중!!!')
               isLecting = 1;
-              document.getElementById('isLecting').innerText = '수업중'
+              document.getElementById('isLecting').innerText = '현재 수업중'
             }
           }
           else if(isLecting==0) {
-            document.getElementById('isLecting').innerText = '수업아님'
+            document.getElementById('isLecting').innerText = '현재 수업아님'
           }
 
           let start = [w*4/100 + (w*96/100)*daynum/GRID_X, h*3/100 + (h*97/100)*(adayschedule[0]-1)/GRID_Y];
@@ -462,6 +461,7 @@ document.getElementById("switch").addEventListener('change', function(){
  })
 
 /**검색 기능으로 테스트할때 쓴 직접 입력 후 검색하게 하는 함수*/
+
 // document.getElementById('button').onclick = function(){
 //   document.getElementById('schedulelist').innerHTML="";
 //   let text = document.getElementById('classroominput').value;
@@ -492,11 +492,12 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-
+//즐겨찾기
 favList = JSON.parse(localStorage.getItem('favList'));
 if(favList == null) favList=[]
 loadFavList()
 
+//다크모드
 isDarkmode = localStorage.getItem('isDarkmode')
 if(isDarkmode == null) isDarkmode = 0;
 if(isDarkmode == 0) document.getElementById("switch").checked = false;
